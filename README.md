@@ -5,7 +5,7 @@ sentiment, scenario analysis) intended to later feed a vehicle-demand
 forecasting system.
 
 ## Status
-- [x] Stage 0: Environment and project setup (in progress)
+- [x] Stage 0: Environment and project setup (done)
 - [ ] Stage 1: Data-source research
 - [ ] Stage 2-9: planned
 

@@ -1,0 +1,30 @@
+# Virtual environment
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets and local config
+.env
+
+# Data: keep folder structure, not contents (raw data may be confidential or large)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Model caches (large files)
+models/
+.cache/
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

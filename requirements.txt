@@ -1,0 +1,13 @@
+# Suzuki PredictAI - Market Intelligence
+# Stage 0 core dependencies (PyTorch/Transformers are added later, in Stage 4)
+
+pandas
+numpy
+openpyxl
+requests
+python-dotenv
+plotly
+matplotlib
+scikit-learn
+streamlit
+pytest

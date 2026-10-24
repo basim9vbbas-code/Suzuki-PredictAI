@@ -1,0 +1,72 @@
+"""Calculations on stored indicators. Takes DataFrames in, returns DataFrames.
+
+No database or dashboard code here, so every function is easy to test.
+"""
+
+from __future__ import annotations
+
+from datetime import date, datetime
+
+import pandas as pd
+
+
+def policy_rate_monthly(
+    changes: pd.DataFrame, end_month: pd.Timestamp | None = None
+) -> pd.DataFrame:
+    """Turn rate-change events into one row per month.
+
+    The value for a month is the rate in effect on the LAST day of that month.
+    Months before the first recorded change are not invented.
+
+    Columns returned:
+        month_end      last day of the month
+        rate_pct       policy rate in effect at month end
+        change_1m_pp   change vs previous month, in percentage points
+        change_12m_pp  change vs 12 months earlier, in percentage points
+    """
+    if changes.empty:
+        raise ValueError("No observations to convert")
+
+    s = changes.sort_values("date").set_index("date")["value"]
+    first = s.index.min().to_period("M")
+    last = (pd.Timestamp(end_month) if end_month is not None else s.index.max())
+    last = last.to_period("M")
+    if last < first:
+        raise ValueError("end_month is before the first observation")
+
+    month_ends = pd.period_range(first, last, freq="M").to_timestamp(how="end").normalize()
+    filled = s.reindex(s.index.union(month_ends)).ffill().reindex(month_ends)
+
+    out = pd.DataFrame({"month_end": month_ends, "rate_pct": filled.to_numpy()})
+    out["change_1m_pp"] = out["rate_pct"].diff(1)
+    out["change_12m_pp"] = out["rate_pct"].diff(12)
+    return out
+
+
+def freshness(
+    last_change: pd.Timestamp,
+    imported_at: str | datetime | None,
+    today: date | None = None,
+    max_import_age_days: int = 35,
+) -> dict:
+    """Describe how current the stored data is.
+
+    Important: the source file lists only rate CHANGES, so 'no change since X'
+    cannot be proven from the file alone. The warning is based on how long ago
+    the file was downloaded, not on the date of the last change.
+    """
+    today = today or date.today()
+    days_since_change = (today - last_change.date()).days
+
+    days_since_import = None
+    if imported_at is not None:
+        imported = pd.Timestamp(imported_at).date()
+        days_since_import = (today - imported).days
+
+    stale = days_since_import is None or days_since_import > max_import_age_days
+    return {
+        "last_change_date": last_change.date(),
+        "days_since_last_change": days_since_change,
+        "days_since_import": days_since_import,
+        "stale": stale,
+    }

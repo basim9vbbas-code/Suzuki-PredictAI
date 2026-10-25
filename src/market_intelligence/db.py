@@ -32,6 +32,18 @@ CREATE TABLE IF NOT EXISTS indicator_observations (
     PRIMARY KEY (series_id, obs_date)
 );
 
+CREATE TABLE IF NOT EXISTS pama_monthly (
+    fiscal_year TEXT NOT NULL,        -- e.g. 2025-26 (July to June)
+    section     TEXT NOT NULL,        -- passenger_cars, trucks, ...
+    subsection  TEXT NOT NULL,        -- cc band or source heading ('' if none)
+    model       TEXT NOT NULL,
+    row_type    TEXT NOT NULL,        -- 'model' or 'total' (sub-totals)
+    metric      TEXT NOT NULL,        -- 'production' or 'sales'
+    month       TEXT NOT NULL,        -- YYYY-MM
+    value       REAL NOT NULL,
+    PRIMARY KEY (fiscal_year, section, subsection, model, metric, month)
+);
+
 CREATE TABLE IF NOT EXISTS import_log (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     series_id   TEXT NOT NULL REFERENCES indicator_series(series_id),
@@ -81,3 +93,41 @@ def read_last_import(conn: sqlite3.Connection, series_id: str) -> dict | None:
         (series_id,),
     ).fetchone()
     return dict(row) if row else None
+
+
+def read_pama(
+    conn: sqlite3.Connection,
+    models: list[str] | None = None,
+    metric: str | None = None,
+    section: str = "passenger_cars",
+    row_type: str = "model",
+) -> pd.DataFrame:
+    """Return stored PAMA rows (month, model, metric, value) for a section."""
+    sql = (
+        "SELECT month, model, metric, subsection, fiscal_year, value "
+        "FROM pama_monthly WHERE section = ? AND row_type = ?"
+    )
+    params: list = [section, row_type]
+    if metric:
+        sql += " AND metric = ?"
+        params.append(metric)
+    if models:
+        sql += f" AND model IN ({','.join('?' * len(models))})"
+        params.extend(models)
+    sql += " ORDER BY month, model"
+    rows = conn.execute(sql, params).fetchall()
+    df = pd.DataFrame(
+        [tuple(r) for r in rows],
+        columns=["month", "model", "metric", "subsection", "fiscal_year", "value"],
+    )
+    df["month"] = pd.to_datetime(df["month"] + "-01")
+    return df
+
+
+def list_pama_models(conn: sqlite3.Connection, section: str = "passenger_cars") -> list[str]:
+    rows = conn.execute(
+        "SELECT DISTINCT model FROM pama_monthly "
+        "WHERE section = ? AND row_type = 'model' ORDER BY model",
+        (section,),
+    ).fetchall()
+    return [r[0] for r in rows]

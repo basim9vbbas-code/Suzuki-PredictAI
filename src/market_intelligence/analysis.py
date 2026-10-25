@@ -70,3 +70,28 @@ def freshness(
         "days_since_import": days_since_import,
         "stale": stale,
     }
+
+
+def active_window(series: pd.DataFrame, value_col: str = "value") -> pd.DataFrame:
+    """Trim a monthly series to the span between its first and last non-zero value.
+
+    PAMA files list models as zero in years when they were not on sale, so
+    leading and trailing zeros mean 'not sold', not 'zero demand'. Zeros
+    inside the window are kept (they can be real stoppages).
+    """
+    s = series.sort_values("month").reset_index(drop=True)
+    nonzero = s.index[s[value_col] > 0]
+    if len(nonzero) == 0:
+        return s.iloc[0:0]
+    return s.loc[nonzero.min(): nonzero.max()].reset_index(drop=True)
+
+
+def annual_totals(pama: pd.DataFrame) -> pd.DataFrame:
+    """Sum monthly values per fiscal year (July-June) for each model and metric."""
+    out = (
+        pama.groupby(["fiscal_year", "model", "metric"], as_index=False)["value"].sum()
+        .pivot(index=["fiscal_year", "model"], columns="metric", values="value")
+        .reset_index()
+    )
+    out.columns.name = None
+    return out

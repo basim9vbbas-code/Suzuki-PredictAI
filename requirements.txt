@@ -4,6 +4,7 @@
 pandas
 numpy
 openpyxl
+pypdf
 requests
 python-dotenv
 plotly

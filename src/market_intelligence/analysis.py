@@ -95,3 +95,20 @@ def annual_totals(pama: pd.DataFrame) -> pd.DataFrame:
     )
     out.columns.name = None
     return out
+
+
+def real_policy_rate(monthly_rate: pd.DataFrame, cpi_yoy: pd.DataFrame) -> pd.DataFrame:
+    """Policy rate minus year-on-year CPI inflation, in percentage points.
+
+    monthly_rate: output of policy_rate_monthly (month_end, rate_pct, ...).
+    cpi_yoy: DataFrame with columns date (month end) and value (CPI YoY, %).
+
+    This is an ex-post real rate: it uses inflation that has already happened,
+    not what lenders expect. Only months present in BOTH inputs are returned.
+    """
+    infl = cpi_yoy.rename(columns={"date": "month_end", "value": "cpi_yoy_pct"})[
+        ["month_end", "cpi_yoy_pct"]
+    ]
+    out = monthly_rate[["month_end", "rate_pct"]].merge(infl, on="month_end", how="inner")
+    out["real_rate_pp"] = out["rate_pct"] - out["cpi_yoy_pct"]
+    return out.sort_values("month_end").reset_index(drop=True)

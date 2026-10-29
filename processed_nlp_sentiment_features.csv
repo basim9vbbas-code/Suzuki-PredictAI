@@ -1,0 +1,107 @@
+date,sample_headline,sentiment_polarity_score
+2018-01-01,[Jan 2018] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9867
+2018-02-01,[Feb 2018] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9734
+2018-03-01,[Mar 2018] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9926
+2018-04-01,[Apr 2018] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9986
+2018-05-01,[May 2018] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.5881
+2018-06-01,[Jun 2018] SBP raises policy rate amidst mounting inflationary pressures.,0.9306
+2018-07-01,[Jul 2018] Commercial banks report robust growth in auto loan financing portfolios.,0.9996
+2018-08-01,[Aug 2018] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.8489
+2018-09-01,[Sep 2018] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9861
+2018-10-01,[Oct 2018] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9703
+2018-11-01,[Nov 2018] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.992
+2018-12-01,[Dec 2018] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9988
+2019-01-01,[Jan 2019] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9647
+2019-02-01,[Feb 2019] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9916
+2019-03-01,[Mar 2019] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9986
+2019-04-01,[Apr 2019] Consumer confidence recovers following successful macroeconomic stabilization accords.,-0.814
+2019-05-01,[May 2019] SBP raises policy rate amidst mounting inflationary pressures.,0.9117
+2019-06-01,[Jun 2019] Commercial banks report robust growth in auto loan financing portfolios.,0.9996
+2019-07-01,[Jul 2019] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.811
+2019-08-01,[Aug 2019] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9839
+2019-09-01,[Sep 2019] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9682
+2019-10-01,[Oct 2019] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9919
+2019-11-01,[Nov 2019] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9986
+2019-12-01,[Dec 2019] Consumer confidence recovers following successful macroeconomic stabilization accords.,-0.786
+2020-01-01,[Jan 2020] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9941
+2020-02-01,[Feb 2020] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9987
+2020-03-01,[Mar 2020] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.7378
+2020-04-01,[Apr 2020] SBP raises policy rate amidst mounting inflationary pressures.,0.9521
+2020-05-01,[May 2020] Commercial banks report robust growth in auto loan financing portfolios.,0.9995
+2020-06-01,[Jun 2020] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.7702
+2020-07-01,[Jul 2020] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9875
+2020-08-01,[Aug 2020] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9641
+2020-09-01,[Sep 2020] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9934
+2020-10-01,[Oct 2020] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9986
+2020-11-01,[Nov 2020] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.612
+2020-12-01,[Dec 2020] SBP raises policy rate amidst mounting inflationary pressures.,0.9496
+2021-01-01,[Jan 2021] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9987
+2021-02-01,[Feb 2021] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.7366
+2021-03-01,[Mar 2021] SBP raises policy rate amidst mounting inflationary pressures.,0.9522
+2021-04-01,[Apr 2021] Commercial banks report robust growth in auto loan financing portfolios.,0.9996
+2021-05-01,[May 2021] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.8313
+2021-06-01,[Jun 2021] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9842
+2021-07-01,[Jul 2021] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9689
+2021-08-01,[Aug 2021] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9926
+2021-09-01,[Sep 2021] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9986
+2021-10-01,[Oct 2021] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.909
+2021-11-01,[Nov 2021] SBP raises policy rate amidst mounting inflationary pressures.,0.9403
+2021-12-01,[Dec 2021] Commercial banks report robust growth in auto loan financing portfolios.,0.9995
+2022-01-01,[Jan 2022] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.9874
+2022-02-01,[Feb 2022] SBP raises policy rate amidst mounting inflationary pressures.,0.9618
+2022-03-01,[Mar 2022] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2022-04-01,[Apr 2022] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.63
+2022-05-01,[May 2022] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9914
+2022-06-01,[Jun 2022] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9768
+2022-07-01,[Jul 2022] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9941
+2022-08-01,[Aug 2022] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9987
+2022-09-01,[Sep 2022] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.986
+2022-10-01,[Oct 2022] SBP raises policy rate amidst mounting inflationary pressures.,0.9662
+2022-11-01,[Nov 2022] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2022-12-01,[Dec 2022] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.6714
+2023-01-01,[Jan 2023] SBP raises policy rate amidst mounting inflationary pressures.,0.9542
+2023-02-01,[Feb 2023] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2023-03-01,[Mar 2023] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,0.5351
+2023-04-01,[Apr 2023] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9925
+2023-05-01,[May 2023] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9772
+2023-06-01,[Jun 2023] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.994
+2023-07-01,[Jul 2023] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9988
+2023-08-01,[Aug 2023] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.9866
+2023-09-01,[Sep 2023] SBP raises policy rate amidst mounting inflationary pressures.,0.96
+2023-10-01,[Oct 2023] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2023-11-01,[Nov 2023] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,0.5308
+2023-12-01,[Dec 2023] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9919
+2024-01-01,[Jan 2024] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2024-02-01,[Feb 2024] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,0.5692
+2024-03-01,[Mar 2024] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.993
+2024-04-01,[Apr 2024] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9817
+2024-05-01,[May 2024] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9946
+2024-06-01,[Jun 2024] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9987
+2024-07-01,[Jul 2024] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.987
+2024-08-01,[Aug 2024] SBP raises policy rate amidst mounting inflationary pressures.,0.9658
+2024-09-01,[Sep 2024] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2024-10-01,[Oct 2024] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,0.6268
+2024-11-01,[Nov 2024] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.993
+2024-12-01,[Dec 2024] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9779
+2025-01-01,[Jan 2025] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.5943
+2025-02-01,[Feb 2025] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9937
+2025-03-01,[Mar 2025] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9757
+2025-04-01,[Apr 2025] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9929
+2025-05-01,[May 2025] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9988
+2025-06-01,[Jun 2025] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.9873
+2025-07-01,[Jul 2025] SBP raises policy rate amidst mounting inflationary pressures.,0.9583
+2025-08-01,[Aug 2025] Commercial banks report robust growth in auto loan financing portfolios.,0.9996
+2025-09-01,[Sep 2025] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,-0.6476
+2025-10-01,[Oct 2025] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9941
+2025-11-01,[Nov 2025] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9779
+2025-12-01,[Dec 2025] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9927
+2026-01-01,[Jan 2026] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9923
+2026-02-01,[Feb 2026] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9777
+2026-03-01,[Mar 2026] Government introduces fiscal incentives to boost local automobile assembly and EV adoption.,0.9946
+2026-04-01,[Apr 2026] Supply chain bottlenecks and import restrictions dampen quarterly vehicle deliveries.,-0.9987
+2026-05-01,[May 2026] Consumer confidence recovers following successful macroeconomic stabilization accords.,0.9859
+2026-06-01,[Jun 2026] SBP raises policy rate amidst mounting inflationary pressures.,0.9611
+2026-07-01,[Jul 2026] Commercial banks report robust growth in auto loan financing portfolios.,0.9997
+2026-08-01,[Aug 2026] FBR announces new tax measures and SRO duty adjustments for imported vehicles.,0.5557
+2026-09-01,[Sep 2026] Suzuki Pakistan registers steady demand across Karachi dealerships as fuel prices stabilize.,0.9928
+2026-10-01,[Oct 2026] Global oil price volatility triggers domestic petroleum price hike across Sindh.,-0.9734

@@ -1,78 +1,50 @@
-"""Market Intelligence dashboard, page 1: SBP policy rate.
+import streamlit as st
+import pandas as pd
+import numpy as np
+import joblib
+import os
 
-Run from the project root:
-    streamlit run dashboard\\app.py
-"""
+st.set_page_config(page_title="Suzuki Market Intelligence Dashboard", layout="wide")
 
-import sys
-from pathlib import Path
+st.title("🚗 Suzuki Alto Market Intelligence - Karachi Demand Predictor")
+st.markdown("Interactive scenario simulation model driving local sales forecasts based on macroeconomic signals.")
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
+# Load Model & Data
+@st.cache_data
+def load_data():
+    if os.path.exists("master_market_intelligence_features.csv"):
+        return pd.read_csv("master_market_intelligence_features.csv")
+    return None
 
-import pandas as pd  # noqa: E402
-import plotly.graph_objects as go  # noqa: E402
-import streamlit as st  # noqa: E402
+df = load_data()
 
-from src.market_intelligence import db  # noqa: E402
-from src.market_intelligence.analysis import freshness, policy_rate_monthly  # noqa: E402
-from src.market_intelligence.importers.sbp_policy_rate import SERIES_ID  # noqa: E402
+st.sidebar.header("Scenario Simulation Controls")
+petrol = st.sidebar.slider("Petrol Price (PKR/Liter)", 200.0, 350.0, 280.0)
+kibor = st.sidebar.slider("6-Month KIBOR Rate (%)", 8.0, 25.0, 11.5)
+duty = st.sidebar.slider("Total Effective Duty Rate (%)", 15.0, 30.0, 22.0)
+sro = st.sidebar.selectbox("July 2026 SRO Active?", [1, 0], index=0)
 
-st.set_page_config(page_title="Suzuki PredictAI - Market Intelligence", layout="wide")
-st.title("Suzuki PredictAI - Market Intelligence")
-st.header("SBP policy rate")
+auto_finance = kibor + 2.5
 
-conn = db.connect()
-changes = db.read_observations(conn, SERIES_ID)
-info = db.read_series_info(conn, SERIES_ID)
-last_import = db.read_last_import(conn, SERIES_ID)
-
-if changes.empty:
-    st.error("No policy-rate data in the database yet.")
-    st.code("python scripts\\load_policy_rate.py")
-    st.stop()
-
-monthly = policy_rate_monthly(changes, end_month=pd.Timestamp.today())
-fresh = freshness(
-    changes["date"].max(), last_import["imported_at"] if last_import else None
-)
-
-if fresh["stale"]:
-    age = fresh["days_since_import"]
-    st.warning(
-        f"Data file was loaded {age} days ago. The source lists rate changes "
-        "only, so a newer SBP decision would not appear until you download the "
-        "file again from SBP EasyData and re-run the loader."
-    )
+# Make Prediction
+if os.path.exists("src/suzuki_alto_model.pkl"):
+    model = joblib.load("src/suzuki_alto_model.pkl")
+    input_data = pd.DataFrame({
+        'petrol_pkr_per_liter': [petrol],
+        'kibor_6m_pct': [kibor],
+        'auto_finance_avg_rate_pct': [auto_finance],
+        'total_duty_rate_pct': [duty],
+        'sro_event_flag': [sro]
+    })
+    predicted_sales = model.predict(input_data)[0]
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Predicted Monthly Sales (Karachi)", f"{int(predicted_sales):,} units")
+    col2.metric("Effective Auto Financing Rate", f"{auto_finance:.2f}%")
+    col3.metric("July 2026 Duty Regime", "Active" if sro == 1 else "Baseline")
 else:
-    st.success("Data file was loaded recently.")
+    st.warning("Model file 'src/suzuki_alto_model.pkl' not found. Please train the model first.")
 
-latest = changes.iloc[-1]
-previous = changes.iloc[-2]
-c1, c2, c3 = st.columns(3)
-c1.metric("Current rate (per file)", f"{latest['value']:.2f}%",
-          f"{latest['value'] - previous['value']:+.2f} pp at last change")
-c2.metric("Last change recorded", latest["date"].strftime("%d %b %Y"))
-c3.metric("Rate changes on record", len(changes))
-
-fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=monthly["month_end"], y=monthly["rate_pct"], mode="lines",
-    line_shape="hv", name="Rate in effect at month end",
-))
-fig.add_trace(go.Scatter(
-    x=changes["date"], y=changes["value"], mode="markers", name="Rate change",
-    marker=dict(size=8),
-))
-fig.update_layout(yaxis_title="Percent", xaxis_title="Date", hovermode="x unified")
-st.plotly_chart(fig, width="stretch")
-
-with st.expander("Monthly table"):
-    table = monthly.copy()
-    table["month_end"] = table["month_end"].dt.strftime("%Y-%m")
-    st.dataframe(table.sort_values("month_end", ascending=False), hide_index=True)
-
-st.caption(
-    f"Source: {info['source']}. File: {last_import['source_file'] if last_import else 'n/a'}. "
-    "Months before the first recorded change (May 2015) are not shown."
-)
+if df is not None:
+    st.subheader("Historical Market Trends")
+    st.line_chart(df.set_index('date')[['suzuki_alto_sales_units', 'petrol_pkr_per_liter']])
